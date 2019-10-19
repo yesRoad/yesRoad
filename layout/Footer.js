@@ -3,7 +3,7 @@ import '@styles/layout/footer.scss';
 
 const Footer = () => (
   <footer>
-        footer
+    <small>Copyright 2019. KimEungGil. All rights reserved.</small>
   </footer>
 );
 

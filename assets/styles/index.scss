@@ -1,7 +1,103 @@
-.index-hello {
-    color: $white;
-    width: 100px;
-    height: 100px;
-    background: url("#{$images}/img-test.png");
+body{
+    background: url('~/static/images/main_bg.png') repeat;
 }
 
+section{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    text-align: center;
+
+    article {
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 35%;
+        min-width: 300px;
+        border-radius: 5px;
+        padding-bottom: 50px;
+
+        h2 {
+            margin: 1.875em 0 -6.250em;
+
+            img.logo {
+                border: 20px solid #fff;
+                border-radius: 50%;
+                width: 30%;
+                min-width: 120px;
+                opacity: 0;
+                animation: rollIn 0.8s linear both;            
+            }   
+        }   
+
+        p.name {
+            text-align: center;
+            font-size: 2.625em;
+            color: #d0d0d0;
+            padding: 1.3em 0 .3em;
+        }    
+
+        hr {
+            width: 92%;
+            height: 2px;
+            background-color: #dcdcdc;
+            border: 0px;
+            margin-left: 4%;
+        }    
+
+        span.sub-tit {
+            text-align: center;
+            font-size: 1.5em;
+            color: #999;
+        }
+
+        a {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            display: block;
+            background-color: #6495ed;
+            padding: 10px 0;
+            border-radius: 8px;
+            width: 85%;
+            margin: 15px auto 0;
+        }
+        
+        a:hover {
+            box-shadow: 0 5px 8px 2px rgba(0, 0, 0, 0.3);
+        }    
+
+    }    
+}
+
+@-webkit-keyframes rollIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-100%) rotate(-120deg);
+      transform: translateX(-100%) rotate(-120deg);
+    }
+  
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0px) rotate(0deg);
+      transform: translateX(0px) rotate(0deg);
+    }
+  }
+  
+  @keyframes rollIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-100%) rotate(-120deg);
+      -ms-transform: translateX(-100%) rotate(-120deg);
+      transform: translateX(-100%) rotate(-120deg);
+    }
+  
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0px) rotate(0deg);
+      -ms-transform: translateX(0px) rotate(0deg);
+      transform: translateX(0px) rotate(0deg);
+    }
+  }

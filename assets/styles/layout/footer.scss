@@ -1,4 +1,12 @@
 footer {
-    font-size: 50px;
-    color: #aa7f22;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 15px 15px 0;
+
+    small{
+        font-size: 10px;
+        color: #fff;
+        letter-spacing: 2px;
+    }
 }
