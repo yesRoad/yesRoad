@@ -11,6 +11,7 @@ header{
     flex-direction: column;
     justify-content: right;
     align-items: flex-end;
+    position: relative;
   }
   
   .menu input {
@@ -20,7 +21,7 @@ header{
     position: absolute;
     cursor: pointer;
     opacity: 0;
-    z-index: 1;
+    z-index: 100;
   }
   
   .menu span{
@@ -30,6 +31,7 @@ header{
     background: #fff;
     border-radius: 4px;
     transition: all .3s linear;
+    z-index: 50;
   }
   
   .span01 {
@@ -39,17 +41,54 @@ header{
   .span03 {
     transform-origin: bottom right;
   }
-  
+
   .menu input:checked ~ .span01 {
     background-color: #fff;
     transform: rotate(45deg) translate(8px);
-  }
+  }  
+
   .menu input:checked ~ .span02 {
     background-color: #fff;
     transform: rotate(135deg) translate(4px);   
   }
+
   .menu input:checked ~ .span03 {
     background-color: #fff;
     transform: rotate(45deg);
     opacity: 0;
+  }
+
+  .menu input:checked ~ .menu-area {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .menu-area{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    text-align: center;
+    transition: all .1s linear;
+    visibility: hidden;
+    opacity: 0;
+
+      ul{
+        text-align: center;
+
+          li {
+            font-size: 1.5em;
+            color: #ffffff;
+            line-height: 1.8em;
+            text-shadow: 2px 2px 8px rgba(0,0,0,.5)
+          }
+      }
   }
