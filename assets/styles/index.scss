@@ -1,6 +1,10 @@
 body{
     background: url('~/static/images/main_bg.png') repeat;
 }
+main {
+  width: 100%;
+  position: absolute;
+}
 
 section{
     width: 100%;
