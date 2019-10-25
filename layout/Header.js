@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import '@styles/layout/header.scss';
 
 const Header = () => (
@@ -11,7 +12,8 @@ const Header = () => (
 
       <div className="menu-area">
         <ul>
-          <li><a href="#none">Menu01</a></li>
+          <li><Link href="/index"><a>Home</a></Link></li>
+          <li><Link href="/contact"><a>Contact Me</a></Link></li>
           <li><a href="#none">Menu02</a></li>
           <li><a href="#none">Menu03</a></li>
         </ul>

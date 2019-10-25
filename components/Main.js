@@ -2,7 +2,7 @@
 import React from 'react';
 import '@styles/index.scss';
 
-const Hello = () => (
+const Main = () => (
   <>
     <section>
       <article>
@@ -16,4 +16,4 @@ const Hello = () => (
   </>
 );
 
-export default Hello;
+export default Main;
