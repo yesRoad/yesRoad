@@ -1,21 +1,95 @@
 import React from 'react';
+import axios from 'axios';
+import Loader from '@/Loader';
+import '@styles/index.scss';
 import '@styles/layout/contactMe.scss';
 
-const ContactMe = () => (
-  <>
-    <section>
-      <article className="form">
-        <h3>Contact Me</h3>
-        <form>
-          <input type="text" name="first_name" className="input-text" id="first_name" placeholder="Name" required="" />
-          <input type="email" className="input-text" name="email" id="email" placeholder="Email" required="" />
-          <input type="tel" className="input-text" name="telephone" id="telephone" placeholder="Phone" />
-          <textarea className="input-text text-area" name="comments" id="message" rows="5" placeholder="Message"></textarea>
-          <div className="text-center"><button type="submit" className="input-btn">Send Message</button></div>
-        </form>
-      </article>
-    </section>
-  </>
-);
+
+class ContactMe extends React.Component {
+
+  state = {
+    name: '',
+    email: '',    
+    phone: '',
+    message: '',
+    isLoader: false
+  }
+
+  mailFormHandler = (e) => {
+    const obj = {};
+    obj[e.target.id] = e.target.value;
+    this.setState(obj);
+  }
+
+  mailData = () => {
+    const dataForm = async () => {
+      const formData = new FormData();
+      formData.append('name', this.state.name);
+      formData.append('email', this.state.email);
+      formData.append('phone', this.state.phone);
+      formData.append('message', this.state.message);   
+         
+      this.state.isLoader = true      
+
+      try {     
+        const data = await axios.post('https://script.google.com/macros/s/AKfycbwmJWcGWDxxXAUGiHrks9joL8akO-NGskcAzOQXtQ/exec', formData);
+        if(data) {            
+          alert('전송에 성공하였습니다.')
+
+          this.state.name = '',
+          this.state.email = '',
+          this.state.phone = '',
+          this.state.message = '',
+          this.state.isLoader = false
+        } else {
+          alert('전송에 실패하였습니다.')
+        }
+      } catch (e) {
+        alert(e)
+      }
+    }
+    dataForm()
+  }
+
+  mailSubmitHandler = () => {               
+    switch(true) {
+      case !this.state.name:
+        alert('이름을 입력하세요.');
+        break;
+      case !this.state.email:
+        alert('이메일을 입력하세요.');
+        break;
+      case !this.state.phone:
+        alert('전화번호를 입력하세요.');
+        break;
+      case !this.state.message:
+        alert('내용을 입력하세요.');
+        break;
+      default:
+        return this.mailData();
+        
+    }
+
+  }  
+
+  render() {
+    
+    return(
+      <>
+      <section>
+        <article className="form">
+          <h3>Contact Me</h3>
+            <input type="text" name="name" className="input-text" id="name" value={this.state.name} placeholder="Name" onChange={(e)=>{this.mailFormHandler(e)}} />
+            <input type="text" className="input-text" name="email" id="email" value={this.state.email} placeholder="Email" onChange={(e)=>{this.mailFormHandler(e)}} />
+            <input type="tel" className="input-text" name="phone" id="phone" value={this.state.phone} placeholder="Phone" onChange={(e)=>{this.mailFormHandler(e)}} />
+            <textarea className="input-text text-area" name="message" id="message" value={this.state.message} rows="5" placeholder="Message" onChange={(e)=>{this.mailFormHandler(e)}} ></textarea>
+            <div className="text-center"><button className="input-btn" onClick={(e) => {this.mailSubmitHandler(e)}}>Send Message</button></div>
+        </article>
+        <Loader isLoader={this.state.isLoader}/>
+      </section>
+    </>
+    )
+  }
+}
 
 export default ContactMe;
