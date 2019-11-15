@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Loader from '@/Loader';
-import '@styles/index.scss';
 import '@styles/layout/contactMe.scss';
 
 
@@ -28,19 +27,24 @@ class ContactMe extends React.Component {
       formData.append('email', this.state.email);
       formData.append('phone', this.state.phone);
       formData.append('message', this.state.message);   
-         
-      this.state.isLoader = true      
+
+      this.setState({
+        isLoader: true
+      });
 
       try {     
         const data = await axios.post('https://script.google.com/macros/s/AKfycbwmJWcGWDxxXAUGiHrks9joL8akO-NGskcAzOQXtQ/exec', formData);
         if(data) {            
           alert('전송에 성공하였습니다.')
 
-          this.state.name = '',
-          this.state.email = '',
-          this.state.phone = '',
-          this.state.message = '',
-          this.state.isLoader = false
+          this.setState({
+            name: '',
+            email: '',
+            phone: '',
+            message: '',
+            isLoader: false
+          });
+
         } else {
           alert('전송에 실패하였습니다.')
         }
@@ -67,7 +71,6 @@ class ContactMe extends React.Component {
         break;
       default:
         return this.mailData();
-        
     }
 
   }  
