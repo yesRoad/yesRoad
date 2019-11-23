@@ -50,6 +50,11 @@ class ContactMe extends React.Component {
         }
       } catch (e) {
         alert(e)
+        
+        this.setState({
+          isLoader: false
+        });
+  
       }
     }
     dataForm()
